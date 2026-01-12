@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
 
     public function register()
     {    
         
-        return view('LoginSystem.register');
+        return view('Auth.register');
     }
 
     public function registerUser(Request $request)
@@ -43,7 +43,7 @@ class UserController extends Controller
     }
     public function login()
     {   
-        return view('LoginSystem.login');
+        return view('Auth.login');
     }
 
     public function loginUser(Request $request)

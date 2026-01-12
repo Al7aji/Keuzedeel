@@ -5,7 +5,7 @@
     <title>Register</title>
 
     <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="  bg-zinc-950 min-h-screen flex items-center justify-center">
 
