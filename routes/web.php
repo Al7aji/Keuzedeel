@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-Route::get('/', function () {
-    return view('index');
-});
+use App\Http\Controllers\IndexController;
+
+Route::get('/', [IndexController::class,'index'], 'index')->name('home');
+
 
 Route::get('/login', [ UserController::class , 'login' ])->name('login'); 
 Route::post('/login' , [ UserController::class , 'loginUser' ])->name('login.user');

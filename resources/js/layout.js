@@ -1,10 +1,16 @@
 
 // resources/js/layout.js
 
-window.onToggleMenu = function (e) {
+window.onToggleMenu = function (icon) {
     const navlinks = document.querySelector('.nav-links');
-    navlinks .classList.toggle('top-[100%]');
-    navlinks .classList.toggle('top-[5.9%]');
-
-    e.name = e.name === 'menu-outline' ? 'close-outline' : 'menu-outline';
+      
+    navlinks.classList.remove('hidden')
+        
+    if( icon.name === 'menu-outline'){
+        icon.name = 'close-outline';
+        
+    }else{
+        icon.name = 'menu-outline' 
+        navlinks.classList.toggle('hidden')
+    }
 };
