@@ -16,30 +16,29 @@
                
            </div>
            <div class=" h:screen shadow-3xl bg-white flex flex-col items-center ">
-                 <h1 class=" p-6 text-3xl font-bold text-blue-900 ">Ons lesaanbod </h1>
+                 <h1 class=" p-6 text-3xl font-bold text-indigo-950 ">Ons lesaanbod <br>----------------- </h1>
 
-                 <div class="Carts p-6 grid  grid-cols-4  gap-5" >
+                 <div class="Carts p-6 grid  grid-cols-4    gap-5" >
                     
                  
-                   <div   class="  rounded-xl relative w-72 h-96  overflow-hidden ">
-                        
+                   <div   class="  rounded-xl relative w-72 h-96  overflow-hidden ">  
+                          <a href="#">
                             {{-- imag --}}
                             <img  class=" shadow-[inset_10px_-30px_30px_rgba(0,0,0,1)] w-full h-full rounded-xl" src="/imags/allyoucanlearn-keuzedeel-ondernemend-handelen.jpg" alt="">
                               
                             {{-- status --}}
-                            <div class="absolute top-1 left-4 flex  " >
-                                
-                                <h2 class=" bottom-1 p-2 bg-[#911be0] rounded-l text-sm  text-white">Active nu</h2>
+                            <div class="absolute top-0 bg-black/20  shadow-[inset_10px_-30px_30px_rgba(0,0,0,1)] w-full h-full ">
+                            <div class="absolute top-1 left-4 flex  " >   
+                                <h2 class=" bottom-1 p-2 bg-[#911be0] rounded-l text-sm  text-white">Active</h2>
+                            </div> 
                             </div>
                              {{-- title --}}
                             <div class="  p-2 absolute bottom-1">
                                 <p   class="    text-xl  text-teal-50  font-bold"> Gevalideerd examen Keuzedeel Ondernemend handelen (K1481)</p>
                             </div>
-                        
+                            </a> 
                     </div>
-                   
-
-                   
+                
                     
                  </div>
                  
