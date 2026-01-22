@@ -21,7 +21,10 @@
                         <a class=" hover:text-gray-500" href="{{ route('home') }}">Home</a>
                     </li>
                     <li>
-                        <a class=" hover:text-gray-500" href="#">Keuzedeel</a>
+                        <a class=" hover:text-gray-500" href="{{ route('Keuzedeel') }}">Keuzedeel</a>
+                    </li>
+                    <li>
+                        <a class=" hover:text-gray-500" href="{{ route('admin') }}">admin</a>
                     </li>
                 </ul>
             </div>

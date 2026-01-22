@@ -34,13 +34,13 @@
                             </div>
                              {{-- title --}}
                             <div class="  p-2 absolute bottom-1">
-                                <p   class="    text-xl  text-teal-50  font-bold"> Gevalideerd examen Keuzedeel Ondernemend handelen (K1481)</p>
+                                <p   class="    text-xl  text-teal-50  font-bold"> Gevalideerd examen Keuzedeel Ondernemend handelen: (K1481)</p>
                             </div>
                             </a> 
                     </div>
                 
                     
-                 </div>
+            </div>
                  
 
 
