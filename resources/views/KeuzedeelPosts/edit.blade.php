@@ -80,9 +80,14 @@
                     name="status"
                     
                     class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-gray-900">
-                    <option selected disabled value="">{{ $Keuzedeel->status }}</option>
-                    <option value="Active">Active</option>
-                    <option value="InActive">InActive</option>
+                    <option value="{{ $Keuzedeel->status }}">{{ $Keuzedeel->status }}</option>
+                    @if ($Keuzedeel->status === 'Active' )
+                        <option value="InActive">InActive</option>
+                    @else
+                        <option value="Active">Active</option>
+                    @endif
+                    
+                    
                 </select>
                 @error('status')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -100,9 +105,9 @@
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
                 <!-- Submit -->
-                <button class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition">
+                <a class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition">
                     Update
-                </button>
+                </a>
             </form>
         </div>
     </section>

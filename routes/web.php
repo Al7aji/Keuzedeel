@@ -22,3 +22,4 @@ Route ::get('/Keuzedeels/create', [ KeuzedeelController::class ,'create'])->name
 Route ::post('/Keuzedeels', [ KeuzedeelController::class ,'store'])->name('Keuzedeel.store');
 Route ::get('/Keuzedeels/{Keuzedeel}/edit', [ KeuzedeelController::class ,'edit'])->name('Keuzedeel.edit');
 Route ::put('/Keuzedeels/{Keuzedeel}', [ KeuzedeelController::class ,'update'])->name('Keuzedeel.update');
+Route ::delete('/Keuzedeels/{Keuzedeel}', [ KeuzedeelController::class ,'delete'])->name('Keuzedeel.destroy');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Keuzedeel;
+use Illuminate\Support\Facades\Storage;
 
 
 class KeuzedeelController extends Controller
@@ -80,5 +81,42 @@ class KeuzedeelController extends Controller
 
     } 
 
+    public function update(request  $request ,$Keuzedeel_id ){
+       
+    $keuzedeel = Keuzedeel::findOrFail($Keuzedeel_id);
 
+    $request->validate([
+        'titel' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:2048',
+        'code' => 'required|string|max:255|unique:keuzedeels,code,' . $Keuzedeel_id,
+        'status' => 'required|in:Active,Inactive',
+        'description' => 'nullable|string',
+    ]);
+
+    $data = $request->only(['titel', 'code', 'status', 'description']);
+
+    
+    if ($request->hasFile('image')) {
+        $data['image'] = $request->file('image')->store('images', 'public');
+    }
+
+    $keuzedeel->update($data);
+
+    return to_route('Keuzedeel.edit', $Keuzedeel_id)
+        ->with('success', 'Updated successfully');
+
+    }
+
+
+    public function delete(Request $request ,$Keuzedeel_id){
+        
+        $keuzedeel = Keuzedeel::findOrFail($Keuzedeel_id);
+        if ($keuzedeel->image) {
+            Storage::disk('public')->delete($keuzedeel->image);
+        }
+        $keuzedeel->delete();
+
+        return to_route('dashboard.keuezedeel')->with('success','Keuezdell is Deletet ');
+
+    }
 }

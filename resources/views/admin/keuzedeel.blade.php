@@ -14,6 +14,11 @@
      
         <div class=" bg-white rounded shadow overflow-x-auto">
           <table class="w-full text-left">
+               @if (session('success'))
+                    <div class="bg-green-100 text-green-800 p-3 rounded mb-4">
+                        {{ session('success') }}
+                    </div>
+               @endif
             <thead class="bg-gray-100">
               <tr>
                 <th class="p-3">ID</th>
@@ -32,10 +37,14 @@
                 <td class="p-3">{{ $keuzedeel->titel }}</td>
                 <td class="p-3">{{ $keuzedeel->status }}</td>
                 <td class="p-3"> 1</td>
-                <td class="p-3 space-x-2">
+                <td class="p-3 flex space-x-2">
                   <button class="text-blue-500">Info</button>
                   <a href="{{ route('Keuzedeel.edit',$keuzedeel->id  ) }}" class="text-blue-600">Edit</a>
-                  <button class="text-red-600">Delete</button>
+                  <form action="{{ route('Keuzedeel.destroy', $keuzedeel->id) }}" method="POST" >
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600">Delete</button>
+                  </form>
                 </td>
               </tr>
               @endforeach

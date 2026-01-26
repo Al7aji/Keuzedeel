@@ -31,13 +31,16 @@ class UserController extends Controller
         $email = request()->email;
         $password = Hash::make(request()->password); // Hash the password before storing it
         
-        User::create([
+        $user = User::create([
             'firstname' => $firstname,
             'lastname' => $lastname,
             'email' => $email,
             'password' => $password,
              
         ]);
+
+         auth()->login($user);
+
         return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
 
     }
@@ -46,22 +49,35 @@ class UserController extends Controller
         return view('Auth.login');
     }
 
-    public function loginUser(Request $request)
-    {
+    public function loginUser(Request $request){
+
         // Handle user login logic here
-        request()->validate([
+        $validate = request()->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'min:6'],
         ]);
-        $email = request()->email;
-        $password = request()->password;
-        ;
-        $user = User::where('email', $email)->first();
-        if(!$user) {
-            return redirect()->route('login')->with('error','user not found');};
-        if(!Hash::check( $password , $user->password )){
-            return redirect()->route('login')->with('error','Wrong password');};
-        $token = $user->createToken('auth-token')->plainTextToken;
-         return $token || route('index');       
+
+
+        if(Auth::attempt($validate)){
+            $request->session()->regenerate();
+
+            return redirect()->intended('/dashboard');{
+        };
+
+
+        throw ValidationException::withMessages([
+            'email' => 'E-mailadres of wachtwoord is onjuist.',
+            'password'=> ' wachtwoord is onjuist.',
+        ]);
+    
+    }
+   
+    }
+     public function logout(Request $request){
+        Auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }
