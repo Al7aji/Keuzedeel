@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -17,33 +18,30 @@ class UserController extends Controller
     public function registerUser(Request $request)
     {
         // Handle user registration logic here
-        request()->validate([
+        $data =request()->validate([
             'firstname' => ['required', 'string', 'min:4' , 'max:255'],
             'lastname' => ['required', 'string', 'min:4' , 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed','regex:/[A-Z]/','regex:/[a-z]/'],
+            'password' => ['required',
+                'string',
+                'min:6',
+                'confirmed',
+                'regex:/[A-Z]/',
+                'regex:/[a-z]/',],
             'password_confirmation' => ['required', 'string', 'min:6'],
             
     
         ]);
-        $firstname = request()->firstname;
-        $lastname = request()->lastname;
-        $email = request()->email;
-        $password = Hash::make(request()->password); // Hash the password before storing it
-        
-        $user = User::create([
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => $email,
-            'password' => $password,
-             
-        ]);
 
-         auth()->login($user);
+        $data['password'] = Hash::make($data['password']); // Hash the password before storing it
 
-        return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
-
+        $user = User::create($data);
+        return redirect()
+            ->route('login')
+            ->with('success', 'Registration successful. Please log in.');
     }
+
+    //Login function
     public function login()
     {   
         return view('Auth.login');
@@ -52,7 +50,7 @@ class UserController extends Controller
     public function loginUser(Request $request){
 
         // Handle user login logic here
-        $validate = request()->validate([
+        $validate = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'min:6'],
         ]);
@@ -67,12 +65,12 @@ class UserController extends Controller
 
         throw ValidationException::withMessages([
             'email' => 'E-mailadres of wachtwoord is onjuist.',
-            'password'=> ' wachtwoord is onjuist.',
         ]);
     
     }
    
     }
+    //Logout function
      public function logout(Request $request){
         Auth()->logout();
 

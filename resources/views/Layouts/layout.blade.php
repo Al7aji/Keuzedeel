@@ -20,6 +20,11 @@
                     <li>
                         <a class=" hover:text-gray-500" href="{{ route('home') }}">Home</a>
                     </li>
+                    @if (auth()->check)
+                        <li>
+                            <a class=" hover:text-gray-500" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                    @endif
                     <li>
                         <a class=" hover:text-gray-500" href="{{ route('Keuzedeel') }}">Keuzedeel</a>
                     </li>
@@ -41,15 +46,7 @@
           
      </div>
 
-     <footer class="  bg-amber-100">
-           <div class="">
-                <h1>command</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur!
-                </p>
 
-          </div> 
-
-     </footer>
 
        
 </body>
