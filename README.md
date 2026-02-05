@@ -1,59 +1,146 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Keuzedeel Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Een webapplicatie voor het **beheer van keuzedeelinschrijvingen** binnen onderwijsinstellingen. 
+Het doel van dit project is om het proces van inschrijven, beheren en bekijken van keuzedelen **veel eenvoudiger en overzichtelijker** te maken voor zowel studenten als administratiemedewerkers.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📝 Probleemstelling
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Op dit moment verloopt de inschrijving voor keuzedelen via losse e-mails en handmatig bijgehouden lijsten. 
+Extra stappen zijn nodig om studenten bij hun tweede keuze in te schrijven wanneer keuzedelen vol zijn.
+Studenten krijgen uitleg over keuzedelen via SLBers en PowerPoint-presentaties, waardoor studenten die ziek zijn de uitleg missen.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Oplossing:** Een centrale website waar:
+- Studenten hun keuzedeel kunnen kiezen en zich inschrijven.
+- Administratiemedewerkers eenvoudig overzicht hebben van alle inschrijvingen.
+- Informatie over keuzedelen eenvoudig kan worden toegevoegd of aangepast.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ⚡ Functionaliteiten
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Voor studenten:**
+- Bekijk per keuzedeel informatie en uitleg.
+- Presentatie-achtige interface voor SLBers (PowerPoint-stijl) voor uitleg aan de klas.
+- Inschrijven voor keuzedelen.
+- Automatische indicatie als een keuzedeel al voltooid is of vol zit.
+- Maximaal 1 keuzedeel per periode; sommige keuzedelen kunnen meerdere keren gevolgd worden (bijv. verdieping software).
 
-## Laravel Sponsors
+**Voor administratiemedewerkers:**
+- Keuzedelen eenvoudig toevoegen, bewerken en activeren/deactiveren via een **Content Management System**.
+- Overzicht van alle inschrijvingen per keuzedeel.
+- Inschrijvingsperiode handmatig openen of sluiten.
+- Limiet van 15 tot 30 studenten per keuzedeel.
+- Beveiligd login systeem.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🛠️ Vereisten & Technische stack
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- **Backend:** Laravel (PHP framework)
+- **Frontend:** Blade templates, CSS, JavaScript, Vite
+- **Database:** MySQL of vergelijkbaar
+- **Dependency management:** Composer & NPM
+- **Server:** Lokaal via XAMPP, Laragon, Valet, of andere PHP-server
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Lokaal draaien
 
-## Code of Conduct
+1. Clone de repository:
+```bash
+git clone https://github.com/Al7aji/Keuzedeel.git
+cd Keuzedeel
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. Installeer backend dependencies:
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+3. Installeer frontend dependencies:
+```bash
+npm install
+npm run dev
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Configureer de .env:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+- Vul databasegegevens in `.env` (`DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`)
 
-## License
+5. Voer database migraties uit:
+```bash
+php artisan migrate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Start de server:
+```bash
+php artisan serve
+```
+
+7. Open je browser:
+```
+http://localhost:8000
+```
+
+---
+
+## 🏗️ Projectstructuur
+
+```
+/app/           ← Backend code (Controllers, Models)
+/bootstrap/     ← Laravel bootstrap files
+/config/        ← Configuratie instellingen
+/database/      ← Migrations en seeders
+/public/        ← Publieke frontend bestanden (CSS, JS, images)
+/resources/     ← Blade templates, CSS/JS bronbestanden
+/routes/        ← Web en API routes
+/storage/       ← Logs en tijdelijke bestanden
+/tests/         ← Unit en feature tests
+.env            ← Configuratie (niet gedeeld)
+```
+
+---
+
+## 🔧 Ontwikkeling en backlog
+
+Gebaseerd op de projectbeschrijving en eerste eisen:
+
+**User Stories:**
+- Als student wil ik keuzedelen kunnen bekijken en informatie lezen.
+- Als student wil ik me kunnen inschrijven voor een keuzedeel.
+- Als student wil ik een indicatie zien als een keuzedeel vol of afgerond is.
+- Als administratiemedewerker wil ik keuzedelen kunnen beheren zonder te programmeren.
+- Als administratiemedewerker wil ik een overzicht van alle inschrijvingen.
+- Als beheerder wil ik de inschrijvingsperiode kunnen openen en sluiten.
+- Als systeembeheerder wil ik dat alles beveiligd is via login/authenticatie.
+
+> Extra backlog-items kunnen worden toegevoegd zodra ontwerp en eerste versie klaar zijn, in lijn met SCRUM-technieken.
+
+---
+
+## ⚙️ Verwijderen van libraries
+
+**Verwijderen van Breeze (Laravel auth):**
+```bash
+composer remove laravel/breeze
+php artisan vendor:publish --tag=breeze-config --force
+```
+Verwijder daarna eventueel de routes, views of controllers die Breeze heeft toegevoegd.
+
+**Verwijderen van TailwindCSS:**
+```bash
+npm uninstall tailwindcss postcss autoprefixer
+```
+Verwijder ook `tailwind.config.js` en verwijzingen naar Tailwind in `resources/css/app.css` of andere CSS-bestanden.
+
+---
+
+## 📜 Licentie
+
+Er is momenteel geen licentiebestand aanwezig. Voeg bijvoorbeeld een **MIT license** toe als je het project open source wilt maken.
+
